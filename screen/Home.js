@@ -12,8 +12,8 @@ import {
 import { LinearGradient } from "react-native-linear-gradient";
 
 //imports de almacenamiento seguro
-import * as Keychain from 'react-native-keychain';
 
+import * as Keychain from 'react-native-keychain';
 //import url base
 import { URL_BASE } from "../config/URL_BASE";
 
@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
   const [pages, setPages] = useState(null);
 
   const getLibros = async () => {
-    let token = await Keychain.getGenericPassword("token");
+    let token = await Keychain.getItemAsync("token");
     const URL = `${URL_BASE}/api/archivo/?page=${page}`;
     const solicitud = await fetch(URL, {
       method: "GET",
@@ -49,7 +49,7 @@ export default function Home({ navigation }) {
     setData((data) => [...data, ...respuesta.results]);
   };
   const getInfo = async () => {
-    let token = await SecureStore.getItemAsync("token");
+    let token = await Keychain.getItemAsync("token");
     const URL = `${URL_BASE}/api/auth/users/me/`;
     const solicitud = await fetch(URL, {
       method: "GET",
@@ -61,13 +61,13 @@ export default function Home({ navigation }) {
 
     const respuesta = await solicitud.json();
     console.log(JSON.stringify(respuesta.last_name));
-    await SecureStore.setItemAsync("nombre", respuesta.first_name);
-    await SecureStore.setItemAsync("apellido_paterno", respuesta.last_name);
-    await SecureStore.setItemAsync(
+    await Keychain.setItemAsync("nombre", respuesta.first_name);
+    await Keychain.setItemAsync("apellido_paterno", respuesta.last_name);
+    await Keychain.setItemAsync(
       "apellido_materno",
       respuesta.apellido_materno
     );
-    await SecureStore.setItemAsync("matricula", respuesta.matricula);
+    await Keychain.setItemAsync("matricula", respuesta.matricula);
   };
   useEffect(() => {
     //use efect para que cuando se carge el componentete se ejecute la funcion posFata
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   textL: {
     fontSize: 15,
-    color: "#fff",
+    colorolor: "#fff",
     fontWeight: "bold",
   },
   containerIm: {

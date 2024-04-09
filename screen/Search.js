@@ -35,7 +35,8 @@ export default function Search({ navigation }) {
   const onChangeSearch = (query) => setConsulta(query);
   const onPrees = async () => {
     const url = `${URL_BASE}/api/archivo/?page=${page}&search=${consulta}`;
-    const token = await Keychain.getGenericPassword("token");
+    const token = await Keychain.getGenericPassword({ service: "token" }); // Aquí corregimos la llamada a la función
+  
     if (consulta.trim() === "") {
       Alert.alert(
         'ATENCION',
@@ -43,7 +44,7 @@ export default function Search({ navigation }) {
         [
           { text: 'ACEPTAR', onPress: () => console.log('Presionado ACEPTAR') },
           
-        ]
+        ]
       );
     } else {
       const request = await fetch(url, {
@@ -56,7 +57,7 @@ export default function Search({ navigation }) {
       const response = await request.json();
       setPages(response.info.pages);
       setPage(page + 1);
-
+  
       setData({
         cargado: true,
         results: [...results, ...response.results],
