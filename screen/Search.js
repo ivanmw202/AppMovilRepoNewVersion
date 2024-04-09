@@ -197,6 +197,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 10,
   },
+
+  
   textL: {
     fontSize: 15,
     color: "#fff",

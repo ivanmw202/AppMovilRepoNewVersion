@@ -81,7 +81,6 @@ const Profile = ({ navigation }) => {
         </View>
 
         
-
         <TouchableOpacity
           onPress={handleClickLogOut}
           Styles={styles.container1}>

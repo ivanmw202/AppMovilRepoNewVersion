@@ -60,9 +60,7 @@ import {
               <Text style={styles.textL}>MANUAL</Text>
             </LinearGradient>
           </TouchableOpacity>
-  
-  
-  
+
         </ScrollView>
   
       </>

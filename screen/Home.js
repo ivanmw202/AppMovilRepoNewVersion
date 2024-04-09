@@ -75,6 +75,8 @@ export default function Home({ navigation }) {
     getInfo();
   }, []);
 
+
+  
   return (
     <>
       {loading ? <Loading /> : null}

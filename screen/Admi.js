@@ -110,4 +110,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#fff",
   },
+
+  
 });
